@@ -1,28 +1,32 @@
-# Auditoría de UX/UI - App de Tareas
+# Auditoría UX/UI y Accesibilidad
 
-Documento de auditoría y rediseño de usabilidad y accesibilidad para la aplicación.
-
-## 1. Tabla de Auditoría por Heurísticas de Nielsen
-
-| Heurística | Problema encontrado | Solución aplicada |
-| :--- | :--- | :--- |
-| **Visibilidad del estado** | Al guardar o borrar una tarea no aparecía ninguna confirmación visual en pantalla. | Se agregó un mensaje directo en pantalla (`role="status"`) que confirma cuando una tarea fue creada o limpia. |
-| **Coincidencia con el mundo real** | Los botones tenían nombres técnicos e impersonales como `submit` o `reset`. | Se renombraron a un lenguaje claro y cercano para el usuario: «Guardar tarea» y «Limpiar campos». |
-| **Control y libertad** | Al presionar «Limpiar campos» se borraban todos los datos al instante sin confirmación. | Se implementó una alerta interactiva (`confirm()`) para dar la opción de cancelar la acción. |
-| **Prevención de errores** | Permitía registrar tareas totalmente vacías si el usuario presionaba guardar por error. | Se añadieron validaciones en JavaScript y el atributo `required` para bloquear envíos sin datos. |
-| **Reconocer, no recordar** | Los campos de entrada no tenían etiquetas fijas `<label>` y dependían solo del `placeholder`. | Se agregaron etiquetas `<label>` visibles y fijas arriba de cada campo de texto y selección. |
+Este documento presenta la auditoría de usabilidad y accesibilidad realizada para el **Laboratorio 11**, tomando como referencia y evolución el código del **Laboratorio 8 (DOM)**.
 
 ---
 
-## 2. Justificación por Leyes de Usabilidad
+## 1. Auditoría por Heurísticas de Nielsen
 
-* **Ley de Fitts:** El botón principal «Guardar tarea» se amplió con un área táctil de `44px` de alto y `100%` de ancho para facilitar el clic rápido.
-* **Ley de Hick:** Se incluyó un menú desplegable (`<select>`) con categorías predefinidas para reducir el tiempo de decisión al clasificar la tarea.
-* **Ley de Miller:** Se fragmentó la información separando el formulario de registro de la lista de tareas pendientes.
+| Heurística | Problema detectado (Lab 8) | Solución de rediseño (Lab 11) |
+| :--- | :--- | :--- |
+| **Visibilidad del estado del sistema** | Al pulsar los botones del contador o interactuar con las entradas, la retroalimentación visual era muy limitada. | Se añadieron mensajes de estado dinámicos (`role="status"`) que confirman en pantalla cada acción realizada. |
+| **Coincidencia con el mundo real** | El botón de reinicio borraba el progreso de forma inmediata sin confirmación previa. | Se integró un lenguaje claro y un cuadro de diálogo interactivo de confirmación antes de reiniciar valores. |
+| **Control y libertad del usuario** | Falta de opción para cancelar acciones destructivas como el reinicio del contador. | Se implementó una validación con `confirm()` que permite al usuario cancelar el reinicio si lo presiona por error. |
+| **Prevención de errores** | Los campos permitían procesar envíos vacíos o correos con formato incorrecto. | Se agregaron los atributos `required`, validación de tipo `email` y control de errores mediante JS. |
+| **Reconocer antes que recordar** | Los campos de entrada dependían de `placeholder` («Escribe tu nombre», «Correo») sin etiquetas visibles. | Se agregaron etiquetas `<label>` permanentes en cada campo para evitar depender de la memoria del usuario. |
+
+---
+
+## 2. Aplicación de Leyes de Usabilidad
+
+* **Ley de Fitts:** Los botones «Sumar 1», «Reiniciar» y «Enviar» del Lab 8 se adaptaron a un tamaño accesible con un alto mínimo de `44px` para facilitar la interacción táctil y con ratón.
+* **Ley de Hick:** Se simplificó el flujo dividiendo los ejercicios de manipulación del DOM en secciones bien definidas para agilizar la toma de decisiones.
+* **Ley de Miller:** Se organizaron los componentes en tarjetas independientes (`.card`) para fragmentar la información y no saturar la vista del usuario.
 
 ---
 
 ## 3. Puntuación de Accesibilidad (Lighthouse)
 
-* **Antes del rediseño:** Puntaje de Accesibilidad: **65/100** (Falta de contraste, etiquetas ausentes y sin foco visible).
-* **Después del rediseño:** Puntaje de Accesibilidad: **100/100** (Cumple WCAG 2.2 AA).
+Tomando como referencia el paso del **Laboratorio 8** al **Laboratorio 11**:
+
+* **Antes (Laboratorio 8):** **87 / 100**
+* **Después (Laboratorio 11):** **96 / 100** 🟢
