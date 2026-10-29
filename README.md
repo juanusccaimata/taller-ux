@@ -14,3 +14,7 @@ Pagina publicada: https://TU-USUARIO.github.io/taller-ux/
 | Ley de Fitts | Boton principal grande y separado de Limpiar |
 | Ley de Hick | Talleres agrupados por categoria |
 | Accesibilidad | Labels, texto alternativo, contraste y foco visible |
+
+# Taller UX / UI - Laboratorio 11
+
+📄 **Auditoría UX/UI:** [Ver documento AUDITORIA-UX.md](docs/AUDITORIA-UX.md)
